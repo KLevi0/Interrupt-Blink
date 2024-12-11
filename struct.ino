@@ -15,7 +15,8 @@ LED leds[] = {
 
 
 ISR(PCINT2_vect) {
-  for (int i = 0; i < (sizeof(leds) / 2) - 1; i++) {
+  for (int i = 0; i < (sizeof(leds) / sizeof(led)) - 1; i++) {
+    Serial.println(leds[i].max);
     if (leds[i].counter <= leds[i].max) {
       leds[i].counter = leds[i].counter + 1;
     } else {
@@ -28,7 +29,7 @@ ISR(PCINT2_vect) {
 
 void setup() {
   // put your setup code here, to run once:
-  // Serial.begin(115200);
+   Serial.begin(115200);
   pinMode(2, INPUT);
   PCMSK2 |= bit(PCINT18);                 // A0
   PCIFR |= bit(PCIF2);                    // clear interrupts
