@@ -15,7 +15,7 @@ LED leds[3] = {
 
 ISR(PCINT2_vect) {
   total++;
-  for (int i = 0; i < (sizeof(leds) / 2); i++) {
+  for (int i = 0; i < (sizeof(leds) / sizeof(led)); i++) {   
     if (!(total % leds[i].max)) {
       digitalToggle(leds[i].pin);
     }
@@ -25,6 +25,7 @@ ISR(PCINT2_vect) {
 
 void setup() {
   // put your setup code here, to run once:
+  //Serial.begin(115200);
   pinMode(2, INPUT);
   PCMSK2 |= bit(PCINT18);                 // D2
   PCIFR |= bit(PCIF2);                    // clear interrupts
