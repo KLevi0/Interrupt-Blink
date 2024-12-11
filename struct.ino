@@ -15,7 +15,7 @@ LED leds[] = {
 
 
 ISR(PCINT2_vect) {
-  for (int i = 0; i < (sizeof(leds) / sizeof(led)) - 1; i++) {
+  for (int i = 0; i < (sizeof(leds) / sizeof(led)); i++) {
     if (leds[i].counter <= leds[i].max) {
       leds[i].counter = leds[i].counter + 1;
     } else {
